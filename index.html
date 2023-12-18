@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Solar System</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/three@0.110.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.110.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+    <canvas class="webgl"></canvas>
+    <canvas class="navbar-canvas"></canvas>
+
+    <div class="navbar">
+        <div class="navbar-item" id="sun">Sun</div>
+        <div class="navbar-item" id="mercury">Mercury</div>
+        <div class="navbar-item" id="venus">Venus</div>
+        <div class="navbar-item" id="earth">Earth</div>
+        <div class="navbar-item" id="mars">Mars</div>
+        <div class="navbar-item" id="jupiter">Jupiter</div>
+        <div class="navbar-item" id="saturn">Saturn</div>
+        <div class="navbar-item" id="uranus">Uranus</div>
+        <div class="navbar-item" id="neptune">Neptune</div>
+    </div>
+
+    <div id="tooltip" class="tooltip-container">
+        <div class="tooltip-content">
+            <div class="close">✕</div>
+            <div id="planet-name" class="planet-name">Planet Name</div>
+            <div id="rectangle">
+                <img id="planet-image" class="planet-image" src="" alt="Planet Image">
+            </div>
+            <div id="planet-image-container"></div>
+            <div id="planet-distance" class="planet-info">
+                Distance from the Sun:
+            </div>
+            <div id="planet-size" class="planet-info">Size: </div>
+            <div id="planet-speed" class="planet-info">Speed: </div>
+        </div>
+    </div>
+
+    <div id="interactive" class="interactive-panel">
+        <h2>Interactive Panel <i id="arrow-icon" class="fas fa-chevron-up"></i></h2>
+        <button id="stop-button">Stop Simulation</button>
+        <button id="reset-button">Reset Simulation</button>
+        <label for="zoom-slider">Zoom:</label>
+        <div class="slider-container">
+            <input type="range" id="zoom-slider" min="0.5" max="2" step="0.01" value="0.6">
+            <span id="zoom-value">0.6</span>
+        </div>
+        <label for="speed-slider">Animation Speed:</label>
+        <div class="slider-container">
+            <input type="range" id="speed-slider" min="0.1" max="2" step="0.01" value="1">
+            <span id="speed-value">1.0</span>
+        </div>
+        <label for="toggle-switch" class="toggle-label">2D View:</label>
+        <div class="toggle-container">
+            <input type="checkbox" id="toggle-switch">
+            <label for="toggle-switch" class="switch"></label>
+            <span class="toggle-text-on">2D</span>
+            <span class="toggle-text-off">3D</span>
+        </div>
+        <div class="checkbox-container">
+            <input type="checkbox" id="orbit-checkbox">
+            <label for="orbit-checkbox">Orbit Path</label>
+            <input type="checkbox" id="earthdays-checkbox" checked onchange="toggleEarthDaysCounter(this)">
+            <label for="earthdays-checkbox">Earth Days Counter</label>
+        </div>
+        <div class="dropdown">
+            <label for="dropdown-select" class="dropdown-label">Camera View:</label>
+            <button class="dropbtn" id="dropdown-select">
+                <span class="selected-option">Select</span>
+                <i class="fa fa-angle-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="#" value="option1">Default</a>
+                <a href="#" value="option2">The Sun</a>
+                <a href="#" value="option3">Mercury</a>
+                <a href="#" value="option4">Venus</i></a>
+                <a href="#" value="option5">The Earth</a>
+                <a href="#" value="option6">Mars</a>
+                <a href="#" value="option7">Jupiter</a>
+                <a href="#" value="option8">Saturn</a>
+                <a href="#" value="option9">Uranus</a>
+                <a href="#" value="option10">Neptune</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="heading-container">
+        <h1 id="heading">Earth Days: 0</h1>
+    </div>
+    
+    <script type='module' src="./main.js"></script>
+</body>
+</html>
