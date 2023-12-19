@@ -115,7 +115,7 @@ body {
 .interactive-panel {
     position: fixed;
     top: 4%;
-    right: 20px;
+    right: 40px;
     border: 1px solid #ccc;
     padding: 20px;
     width: 300px;
