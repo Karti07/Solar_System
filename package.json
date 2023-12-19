@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/Karti07/Solar_System#readme",
   "dependencies": {
-    "three": "^0.159.0"
+    "three": "^0.145.0"
   }
 }
