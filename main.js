@@ -14,15 +14,7 @@ import {
 } from './js/settings.js'
 
 
-
-
-
-
 // --- declare
-
-
-
-
 
 
 // --- library
@@ -50,8 +42,6 @@ async function initThreeJsScene() {
 }
 
 
-
-
 // --- init
 
 initThreeJsScene()
@@ -66,7 +56,3 @@ initThreeJsScene()
 	})
 
 })
-
-
-
-

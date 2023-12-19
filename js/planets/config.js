@@ -1,10 +1,5 @@
 import scene from "../scene.js";
 
-
-
-
-
-
 const moonRadius = 1.5;
 const saturnRadius = 9;
 const sunRadius = 15;
@@ -26,9 +21,7 @@ const local_meshes = {
 	moon: false,
 }
 
-
-
-function generatePlanetsSettings() { 
+function generatePlanetsSettings() {
 	return {
 		mercury: { angle: Math.random() * Math.PI * 2, orbitSpeed: 0.001 },
 		venus: { angle: Math.random() * Math.PI * 2, orbitSpeed: 0.0008 },
@@ -39,11 +32,10 @@ function generatePlanetsSettings() {
 		uranus: { angle: Math.random() * Math.PI * 2, orbitSpeed: 0.00002 },
 		neptune: { angle: Math.random() * Math.PI * 2, orbitSpeed: 0.00001 },
 	};
-} 
+}
 
 // Call the function to get the planet data
 const planet_settings = generatePlanetsSettings();
-
 
 const planet_data = [
 	{ id: 'mercury', radius: 4, texturePath: "./textures/mercury_texture.jpg", position: [sunRadius + 4, 0, 0], parent: false },
@@ -52,10 +44,8 @@ const planet_data = [
 	{ id: 'jupiter', radius: 11, texturePath: "./textures/jupiter_texture.jpg", position: [sunRadius + 11, 0, 0], parent: false },
 	{ id: 'saturn', radius: 9, texturePath: "./textures/saturn_texture.jpg", position: [sunRadius + 9, 0, 0], parent: false },
 	{ id: 'uranus', radius: 6, texturePath: "./textures/uranus_texture.jpg", position: [sunRadius + 6, 0, 0], parent: false },
-	{ id: 'neptune', radius: 3.75, texturePath: "./textures/neptune_texture.jpg", position: [sunRadius + 3.75, 0, 0], parent: false },	
+	{ id: 'neptune', radius: 3.75, texturePath: "./textures/neptune_texture.jpg", position: [sunRadius + 3.75, 0, 0], parent: false },
 ]
-
-
 
 const navbar_data = [
 	{ id: "sun", mesh: false, name: "Sun", distance: "0", size: "109.2x larger than Earth", speed: "800,000", scale: 1, image: "./images/sun.jpg" },
@@ -69,66 +59,47 @@ const navbar_data = [
 	{ id: "neptune", mesh: false, name: "Neptune", distance: "4.5 billion km", size: "24,622 km", speed: "19,620", scale: 5, image: "./images/neptune.jpg" },
 ];
 
-// planet_meshes.sun
-// planet_meshes.mercury
-// planet_meshes.venus
-// planet_meshes.earth
-// planet_meshes.mars
-// planet_meshes.jupiter
-// planet_meshes.saturn
-// planet_meshes.uranus
-// planet_meshes.neptune
-
 // Store the initial positions of the planets
 const initialPlanetData = generatePlanetsSettings()
 
-
-
-
-
 function createOrbitPath(radius) {
-  const segments = 360;
-  const geometry = new THREE.BufferGeometry();
-  const material = new THREE.LineBasicMaterial({ color: 0xffffff });
-  const points = [];
+	const segments = 360;
+	const geometry = new THREE.BufferGeometry();
+	const material = new THREE.LineBasicMaterial({ color: 0xffffff });
+	const points = [];
 
-  for (let i = 0; i <= segments; i++) {
-    const theta = (i / segments) * Math.PI * 2;
-    const x = Math.cos(theta) * radius;
-    const z = Math.sin(theta) * radius;
-    points.push(new THREE.Vector3(x, 0, z));
-  }
+	for (let i = 0; i <= segments; i++) {
+		const theta = (i / segments) * Math.PI * 2;
+		const x = Math.cos(theta) * radius;
+		const z = Math.sin(theta) * radius;
+		points.push(new THREE.Vector3(x, 0, z));
+	}
 
-  geometry.setFromPoints(points);
-  const line = new THREE.Line(geometry, material);
-  return line;
+	geometry.setFromPoints(points);
+	const line = new THREE.Line(geometry, material);
+	return line;
 }
-
-
-
 
 function createPlanetaryOrbits() {
 	const orbitRadii = [
-	30, // Mercury
-	47, // Venus
-	75, // Earth
-	100, // Mars
-	140, // Jupiter
-	190, // Saturn
-	245, // Uranus
-	285, // Neptune
+		30, // Mercury
+		47, // Venus
+		75, // Earth
+		100, // Mars
+		140, // Jupiter
+		190, // Saturn
+		245, // Uranus
+		285, // Neptune
 	];
 
 	const orbitPaths = orbitRadii.map((radius) => createOrbitPath(radius));
-	orbitPaths.forEach((orbitPath) => scene.add(orbitPath) );
+	orbitPaths.forEach((orbitPath) => scene.add(orbitPath));
 
 	return orbitPaths;
 }
 
 // Call the main function to create planetary orbits
 const orbitPaths = createPlanetaryOrbits();
-
-
 
 // for logging:
 window.CONFIG = {
@@ -145,9 +116,7 @@ window.CONFIG = {
 	orbitPaths,
 }
 
-
 const loader = new THREE.TextureLoader()
-
 
 export {
 	sunRadius,

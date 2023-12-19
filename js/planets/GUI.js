@@ -12,8 +12,6 @@ import {
 	navbarRenderer,
 } from '../renderers.js'
 
-
-
 // --- declare
 
 // Camera variables
@@ -30,7 +28,6 @@ const orbitCheckbox = document.getElementById("orbit-checkbox");
 const dropdownOptions = document.querySelectorAll(".dropdown-content a");
 const selectedOptionText = document.querySelector(".selected-option");
 const arrowIcon = document.getElementById("arrow-icon");
-
 
 
 // --- library
@@ -72,7 +69,6 @@ function handlePlanetClick( planetMesh, name, distance, size, speed, scale, imag
     planetMesh.scale.set(scale, scale, scale);
 }
 
-
 function updateSpeedValue() {
 	const newSpeed = parseFloat(speedSlider.value).toFixed(1);
 	speedValueLabel.textContent = newSpeed;
@@ -86,7 +82,6 @@ function updateSpeedValue() {
 	planet_settings.uranus.orbitSpeed = newSpeed * speedMultiplier;
 	planet_settings.neptune.orbitSpeed = newSpeed * speedMultiplier;
 }
-
 
 function updateZoomValue() {
 	const zoomValue = parseFloat(zoomSlider.value).toFixed(2);
@@ -117,16 +112,7 @@ function render(){
 
 
 
-
-
-
-
-
-
-
-
 // --- init
-
 
 // Event listener for toggle switch change
 toggleSwitch.addEventListener("change", () => {
@@ -150,8 +136,6 @@ toggleSwitch.addEventListener("change", () => {
 		render();
 	}
 });
-
-
 
 dropdownOptions.forEach((option) => {
   option.addEventListener("click", (event) => {
@@ -256,9 +240,6 @@ checkbox.addEventListener('change', e => {
 	}
 })
 
-
-
-
 document.addEventListener("DOMContentLoaded", function () {
 	zoomSlider.addEventListener("input", updateZoomValue);
 	speedSlider.addEventListener("input", updateSpeedValue);
@@ -268,9 +249,6 @@ document.addEventListener("DOMContentLoaded", function () {
 orbitCheckbox.checked = true;
 
 orbitCheckbox.addEventListener("input", handleOrbitCheckboxChange);
-
-
-
 
 const init = () => {
 	/*
@@ -294,9 +272,6 @@ const init = () => {
 	});		
 
 }
-
-
-
 
 export {
 	init

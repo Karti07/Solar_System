@@ -2,7 +2,6 @@ import * as settings from './settings.js'
 import camera from './camera.js'
 
 
-
 // --- declare
 
 const canvas = document.querySelector( settings.canvasSelector )
@@ -28,7 +27,6 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 
-
 // --- library 
 
 function handleWindowResize() {
@@ -42,20 +40,14 @@ function handleWindowResize() {
 }
 
 
-
 // --- init
 
 navbarRenderer.setSize( settings.navbarWidth, settings.navbarHeight );
 
-
 handleWindowResize()
-
 
 // Attach the resize function to the 'resize' event
 window.addEventListener("resize", handleWindowResize);
-
-
-
 
 export {
 	renderer,

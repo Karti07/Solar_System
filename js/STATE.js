@@ -4,5 +4,4 @@ const state = {
 	earthDays: 0,
 }
 
-
 export default state

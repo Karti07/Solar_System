@@ -11,10 +11,8 @@ import {
 import STATE from './STATE.js'
 
 
-
 const settings = planet_settings
 const meshes = planet_meshes
-
 
 function updatePlanetPositions() {
 	const planets = [
@@ -60,7 +58,6 @@ function updatePlanetPositions() {
   
 }
 
-
 function rotateObjects() {
 	  // Rotate the objects
 	if( !planet_meshes.sun ) return;
@@ -78,13 +75,10 @@ function rotateObjects() {
 	planet_meshes.neptune.rotation.y += 0.005;
 }
 
-
 function render(){
 	renderer.render(scene, camera);
     navbarRenderer.render(scene, camera);
 }
-
-
 
 function animate() {
   // Update controls

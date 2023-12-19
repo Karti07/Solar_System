@@ -23,9 +23,6 @@ import {
 import * as GUI from './GUI.js';
 import STATE from '../STATE.js'
 
-
-
-
 // --- declare
 
 // DOM eles
@@ -38,20 +35,7 @@ const navbarCanvas = document.querySelector( settings.navbarCanvasSelector )
 const startButton = document.getElementById("stop-button");
 
 
-
-
-
-
-
-
-
-
 // --- library
-
-
-
-
-
 
 async function createPlanet(radius, texturePath, position, parent) {
 	const geometry = new THREE.SphereGeometry(radius, 32, 32);
@@ -78,9 +62,6 @@ async function createPlanet(radius, texturePath, position, parent) {
 	return mesh;
 }
 
-
-
-
 // Use initialPlanetData to reset the simulation
 function resetSimulation() {
   // Reset the positions and rotations of the planets
@@ -97,34 +78,15 @@ function resetSimulation() {
   render();
 }
 
-
-
 function render(){
 	renderer.render(scene, camera);
     navbarRenderer.render(scene, camera);
 }
 
-
-
-
-
 function addOrbitPath(scene, orbitRadius) {
   const orbitPath = createOrbitPath(orbitRadius);
   scene.add(orbitPath);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 const initLocalMeshes = async() => {
@@ -181,11 +143,6 @@ const initLocalMeshes = async() => {
 }
 
 
-
-
-
-
-
 const init = async() => {
 
 	// Mesh
@@ -221,9 +178,6 @@ const init = async() => {
 
 } // init
 
-
-
-
 document.addEventListener("click", (event) => {
 	// Check if the clicked element is a navbar item
 	let isNavbarItemClick = false;
@@ -241,8 +195,6 @@ document.addEventListener("click", (event) => {
 	}
 });
 
-
-
 // Add an event listener to the reset button
 const resetButton = document.getElementById("reset-button");
 resetButton.addEventListener("click", () => {
@@ -257,10 +209,7 @@ resetButton.addEventListener("click", () => {
   
 });
 
-
 window.addEventListener("load", resetSimulation);
-
-
 
 export {
 	init,
