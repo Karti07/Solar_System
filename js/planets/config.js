@@ -10,7 +10,6 @@ const saturnRadius = 9;
 const sunRadius = 15;
 const earthRadius = 7;
 
-// let mercuryMesh, venusMesh, marsMesh, saturnMesh, jupiterMesh, uranusMesh, neptuneMesh;
 const planet_meshes = {
 	mercury: false,
 	venus: false,
@@ -131,21 +130,23 @@ const orbitPaths = createPlanetaryOrbits();
 
 
 
-// // for logging:
+// for logging:
+window.CONFIG = {
+	sunRadius,
+	earthRadius,
+	saturnRadius,
+	moonRadius,
+	planet_meshes,
+	local_meshes,
+	planet_data,
+	navbar_data,
+	planet_settings,
+	initialPlanetData,
+	orbitPaths,
+}
 
-// window.CONFIG = {
-// 	sunRadius,
-// 	earthRadius,
-// 	saturnRadius,
-// 	moonRadius,
-// 	planet_meshes,
-// 	local_meshes,
-// 	planet_data,
-// 	navbar_data,
-// 	planet_settings,
-// 	initialPlanetData,
-// 	orbitPaths,
-// }
+
+const loader = new THREE.TextureLoader()
 
 
 export {
@@ -160,4 +161,5 @@ export {
 	planet_settings,
 	initialPlanetData,
 	orbitPaths,
+	loader,
 }

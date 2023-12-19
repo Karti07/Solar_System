@@ -18,6 +18,7 @@ import {
 	navbar_data,
 	initialPlanetData,
 	planet_settings,
+	loader,
 } from './config.js'
 import * as GUI from './GUI.js';
 import STATE from '../STATE.js'
@@ -52,9 +53,14 @@ const startButton = document.getElementById("stop-button");
 
 
 
-function createPlanet(radius, texturePath, position, parent) {
+async function createPlanet(radius, texturePath, position, parent) {
 	const geometry = new THREE.SphereGeometry(radius, 32, 32);
-	const material = new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load(texturePath) });
+	const tex = await new Promise((resolve, reject) => {
+		loader.load(texturePath, t => {
+			resolve( t )
+		})
+	})
+	const material = new THREE.MeshStandardMaterial({ map: tex });
 	const mesh = new THREE.Mesh(geometry, material);
 	mesh.position.set(...position);
 	parent.add(mesh);
@@ -68,7 +74,7 @@ function createPlanet(radius, texturePath, position, parent) {
 	case "./textures/uranus_texture.jpg": planet_meshes.uranus = mesh; break;
 	case "./textures/neptune_texture.jpg": planet_meshes.neptune = mesh; break;
 	}
-
+	
 	return mesh;
 }
 
@@ -121,24 +127,23 @@ function addOrbitPath(scene, orbitRadius) {
 
 
 
-const initLocalMeshes =() => {
+const initLocalMeshes = async() => {
 
 	const sunGeometry = new THREE.SphereGeometry(sunRadius, 32, 32);
-	const sunMaterial = new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("./textures/sun_texture.jpg") });
+	const sunMaterial = new THREE.MeshStandardMaterial({ map: loader.load("./textures/sun_texture.jpg") });
 	const sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
 	scene.add( sunMesh );
 	local_meshes.sun = sunMesh
 
-	// const earthMesh = 
 	const earthGeometry = new THREE.SphereGeometry(earthRadius, 32, 32);
-	const earthMaterial = new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("./textures/earth_texture.jpg") });
+	const earthMaterial = new THREE.MeshStandardMaterial({ map: loader.load("./textures/earth_texture.jpg") });
 	const earthMesh = new THREE.Mesh(earthGeometry, earthMaterial);
 	earthMesh.position.set(sunRadius + 55, 0, 0)
 	local_meshes.sun.add( earthMesh );
 	local_meshes.earth = earthMesh
 
 	const moonGeometry = new THREE.SphereGeometry(moonRadius, 32, 32);
-	const moonMaterial = new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("./textures/moon_texture.jpg"), emissive: 0x171717 });
+	const moonMaterial = new THREE.MeshStandardMaterial({ map: loader.load("./textures/moon_texture.jpg"), emissive: 0x171717 });
 	const moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
 	moonMesh.position.set(earthRadius + moonRadius + 2, 0, 0);
 	moonMesh.scale.set(1.5, 1.5, 1.5);
@@ -152,24 +157,26 @@ const initLocalMeshes =() => {
 			texturePath,
 			position,
 		} = data
-		console.log('building planet: ', id )
-		const parent = data.parent = local_meshes.sun
-		createPlanet( radius, texturePath, position, parent );
+		data.parent = local_meshes.sun
+		const mesh = await createPlanet( radius, texturePath, position, data.parent );
 	}
 
 	const saturnGeometry = new THREE.SphereGeometry(saturnRadius, 32, 32);
 	const saturnMaterial = new THREE.MeshStandardMaterial({ map: new THREE.TextureLoader().load("./textures/saturn_texture.jpg") });
 	const saturnMesh = new THREE.Mesh(saturnGeometry, saturnMaterial);
 	local_meshes.sun.add( saturnMesh );
+	local_meshes.sun.add( planet_meshes.saturn );
 
 	const ringGeometry = new THREE.RingGeometry(10, 15, 64);
 	const ringMaterial = new THREE.MeshStandardMaterial({ 
-		map: new THREE.TextureLoader().load("./textures/saturn_ring_texture.png"), 
+		map: loader.load("./textures/saturn_ring_texture.png"), 
 		side: THREE.DoubleSide,
 	});
 	const ringMesh = new THREE.Mesh(ringGeometry, ringMaterial);
 	ringMesh.rotation.x = Math.PI / 2;
-	planet_meshes.saturn.add( ringMesh );
+	if( planet_meshes.saturn ){
+		planet_meshes.saturn.add( ringMesh );
+	}
 
 }
 
@@ -179,17 +186,11 @@ const initLocalMeshes =() => {
 
 
 
-const init = () => {
+const init = async() => {
 
 	// Mesh
 
-	initLocalMeshes()
-
-	// init navbar meshes
-	for( const entry of navbar_data ){
-		entry.mesh = planet_meshes[ entry.id ] || local_meshes[ entry.id ]
-		// debugger
-	}
+	await initLocalMeshes()
 
 	startButton.addEventListener("click", () => {
 	  STATE.isSimulationRunning = !STATE.isSimulationRunning;
@@ -214,15 +215,6 @@ const init = () => {
 
 	function startCounting() {
 	  STATE.animationId = requestAnimationFrame(animate);
-	}
-
-	function toggleEarthDaysCounter(checkbox) {
-	  const headingContainer = document.getElementById("heading-container");
-	  if (checkbox.checked) {
-	    headingContainer.style.display = "block";
-	  } else {
-	    headingContainer.style.display = "none";
-	  }
 	}
 
 	GUI.init()

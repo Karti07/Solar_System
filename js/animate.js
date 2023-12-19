@@ -36,6 +36,11 @@ function updatePlanetPositions() {
 			distance 
 		} = planet;
 
+		if( !mesh ){
+			console.log('skipping', planet.id )
+			continue
+		}
+
 		for (const key in settings) {
 			if (key !== "sun") {
 				  settings[key].angle += settings[key].orbitSpeed;
@@ -92,7 +97,7 @@ function animate() {
   rotateObjects();
 
   // Render Scene
-  renderer.render(scene, camera);
+  // renderer.render(scene, camera);
 
   //Running Simulation
   if (!STATE.isSimulationRunning) return;

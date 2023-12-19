@@ -3,6 +3,7 @@ import {
 	local_meshes,
 	planet_meshes,
 	navbar_data,
+	orbitPaths,
 } from './config.js'
 import camera from '../camera.js';
 import scene from '../scene.js';
@@ -65,7 +66,7 @@ function showPlanetInfo(planetName, distance, size, speed, image) {
   planetImageElem.src = image;
 }
 
-function handlePlanetClick(planetMesh, name, distance, size, speed, scale, image) {
+function handlePlanetClick( planetMesh, name, distance, size, speed, scale, image) {
     resetPlanetScales();
     showPlanetInfo(name, distance, size, speed, image);
     planetMesh.scale.set(scale, scale, scale);
@@ -245,6 +246,15 @@ arrowIcon.addEventListener("click", () => {
 
 });
 
+const checkbox = document.getElementById('earthdays-checkbox')
+checkbox.addEventListener('change', e => {
+	const headingContainer = document.getElementById("heading-container");
+	if (checkbox.checked) {
+		headingContainer.style.display = "block";
+	} else {
+		headingContainer.style.display = "none";
+	}
+})
 
 
 
@@ -260,18 +270,29 @@ orbitCheckbox.checked = true;
 orbitCheckbox.addEventListener("input", handleOrbitCheckboxChange);
 
 
+
+
 const init = () => {
 	/*
 		functions dependent on load order
 	*/
 
+		// init navbar meshes
+	for( const entry of navbar_data ){
+		entry.mesh = planet_meshes[ entry.id ] || local_meshes[ entry.id ]
+		if( !entry.mesh ){
+			console.error('failed to init navbar mesh', entry.id )
+		}
+	}
+
 	navbar_data.forEach((planet) => {
 		const { id, mesh, name, distance, size, speed, scale, image } = planet;
+		if( !mesh ) console.error( name + ' not assigned yet')
 		document.getElementById(id).addEventListener("click", () => {
-			if( !mesh ) debugger
-			handlePlanetClick(mesh, name, distance, size, speed, scale, image);
+			handlePlanetClick( mesh, name, distance, size, speed, scale, image );
 		});
-	});
+	});		
+
 }
 
 

@@ -5,9 +5,8 @@ import lights from './js/lights.js'
 import orbitControls from './js/orbitControls.js'
 import * as PLANETS from './js/planets/PLANETS.js'
 import {
-	renderer,
-	navbarRenderer
-} from './js/renderers.js'
+	loader,
+} from './js/planets/config.js'
 import {
 	canvasSelector,
 	navbarCanvasSelector,
@@ -30,29 +29,23 @@ const navbarCanvas = document.querySelector(navbarCanvasSelector);
 
 // --- library
 
-function initThreeJsScene() {
-
-  // Loader for background texture
-	const loader = new THREE.TextureLoader();
-	// setTimeout(() => {
-	const url = './textures/' + backgroundTextureSlug
+async function initThreeJsScene() {
 	
-	console.log('loading bg: ', url )
-
-	loader.load( url, tex => {
-		scene.background = tex;
-		// render();
-		// renderer.render(scene, camera);
-		// navbarRenderer.render(scene, camera);
+	const url = './textures/' + backgroundTextureSlug
+	await new Promise( resolve => {
+		loader.load( url, tex => {
+			scene.background = tex;
+			resolve()
+		})		
 	})
 
 	//Camera
 	scene.add(camera);
 
-	//Orbit Controls
+	// //Orbit Controls
 	orbitControls.update();
 
-	//Lights
+	// //Lights
 	scene.add( lights.ambientLight);
 	scene.add( lights.pointLight);
 
@@ -63,11 +56,19 @@ function initThreeJsScene() {
 
 // --- init
 
-initThreeJsScene();
+initThreeJsScene()
+.then( res => {
 
-PLANETS.init()
+	PLANETS.init()
+	.then( res => {
 
-// Start the animation loop
-animate();
+		// Start the animation loop
+		animate();
+
+	})
+
+})
+
+
 
 

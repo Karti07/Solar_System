@@ -1,6 +1,6 @@
 //Scene
 const scene = new THREE.Scene();
 
-// window.SCENE = scene
+window.SCENE = scene
 
 export default scene

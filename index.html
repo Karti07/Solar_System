@@ -5,8 +5,12 @@
     <title>Solar System</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/three@0.110.0/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.110.0/examples/js/controls/OrbitControls.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/three@0.110.0/build/three.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/three@0.110.0/examples/js/controls/OrbitControls.js"></script> -->
+
+   <script src="https://cdn.jsdelivr.net/npm/three@0.145.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.145.0/examples/js/controls/OrbitControls.js"></script>
+
 </head>
 <body>
     <canvas class="webgl"></canvas>
@@ -64,7 +68,7 @@
         <div class="checkbox-container">
             <input type="checkbox" id="orbit-checkbox">
             <label for="orbit-checkbox">Orbit Path</label>
-            <input type="checkbox" id="earthdays-checkbox" checked onchange="toggleEarthDaysCounter(this)">
+            <input type="checkbox" id="earthdays-checkbox" checked>
             <label for="earthdays-checkbox">Earth Days Counter</label>
         </div>
         <div class="dropdown">
@@ -92,6 +96,6 @@
         <h1 id="heading">Earth Days: 0</h1>
     </div>
     
-    <script type='module' src="./main.js"></script>
+    <script defer='defer' type='module' src="./main.js"></script>
 </body>
 </html>
