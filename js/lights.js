@@ -1,3 +1,6 @@
+import * as THREE from 'three'
+
+
 const ambientLight = new THREE.AmbientLight(0xffffff, 2);
 ambientLight.position.set(1, 1, 1);
 

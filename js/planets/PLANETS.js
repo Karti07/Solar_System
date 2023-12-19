@@ -22,6 +22,12 @@ import {
 } from './config.js'
 import * as GUI from './GUI.js';
 import STATE from '../STATE.js'
+// import * as THREE from '../../node_modules/three/build/three.module.js'
+import * as THREE from 'three'
+
+
+
+
 
 // --- declare
 

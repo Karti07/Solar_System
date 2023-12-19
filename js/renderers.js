@@ -1,5 +1,7 @@
 import * as settings from './settings.js'
 import camera from './camera.js'
+import * as THREE from 'three'
+
 
 
 // --- declare

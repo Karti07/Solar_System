@@ -1,0 +1,22 @@
+{
+  "name": "solar_system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Karti07/Solar_System.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Karti07/Solar_System/issues"
+  },
+  "homepage": "https://github.com/Karti07/Solar_System#readme",
+  "dependencies": {
+    "three": "^0.159.0"
+  }
+}

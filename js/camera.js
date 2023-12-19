@@ -1,3 +1,8 @@
+// import * as THREE from '../node_modules/three/build/three.module.js'
+import * as THREE from 'three'
+
+
+
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(-5, 150, 350);
 camera.rotation.set(-Math.PI / 4, 0, 0);

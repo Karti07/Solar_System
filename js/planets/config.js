@@ -1,4 +1,6 @@
 import scene from "../scene.js";
+import * as THREE from 'three'
+
 
 const moonRadius = 1.5;
 const saturnRadius = 9;
