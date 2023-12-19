@@ -19,8 +19,6 @@ import {
 
 
 // --- declare
-const canvas = document.querySelector(canvasSelector);
-const navbarCanvas = document.querySelector(navbarCanvasSelector);
 
 
 
