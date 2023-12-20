@@ -2,11 +2,11 @@
 [Demo Link]()
 
 ## Table of Contents
-  - [Solar System Project](#solar-system-project---threejs)
-   * [Description](#description)
-   * [Features](#features)
-   * [How to Use](#how-to-use)
-   * [Development Stack](#development-stack)
+- [Solar System Project - Three.js](#solar-system-project---threejs)
+  * [Description](#description)
+  * [Features](#features)
+  * [How to Use](#how-to-use)
+  * [Development Stack](#development-stack)
 
 ## Description
 
