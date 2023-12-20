@@ -108,16 +108,29 @@ const initLocalMeshes = async () => {
 	local_meshes.earth.add(moonMesh);
 	local_meshes.moon = moonMesh;
 
+	const loads = []
+
 	for (const data of planet_data) {
+		const {
+			id,
+			radius,
+			texturePath,
+			position,
+		} = data
 		data.parent = local_meshes.sun;
-		const mesh = await createPlanet(data.radius, data.texturePath, data.position, data.parent);
+		loads.push(createPlanet( radius, texturePath, position, data.parent));
 	}
 
-	const saturnGeometry = new THREE.SphereGeometry(saturnRadius, 32, 32);
-	const saturnMaterial = new THREE.MeshStandardMaterial({ map: loader.load("./textures/saturn_texture.jpg") });
-	const saturnMesh = new THREE.Mesh(saturnGeometry, saturnMaterial);
-	local_meshes.sun.add(saturnMesh);
-	local_meshes.sun.add(planet_meshes.saturn);
+	Promise.all( loads )
+	.then( res => {
+		GUI.init() // Initialize GUI components
+		
+		const saturnGeometry = new THREE.SphereGeometry(saturnRadius, 32, 32);
+		const saturnMaterial = new THREE.MeshStandardMaterial({ map: loader.load("./textures/saturn_texture.jpg") });
+		const saturnMesh = new THREE.Mesh(saturnGeometry, saturnMaterial);
+		local_meshes.sun.add(saturnMesh);
+		local_meshes.sun.add(planet_meshes.saturn);
+	})
 
 	const ringGeometry = new THREE.RingGeometry(10, 15, 64);
 	const ringMaterial = new THREE.MeshStandardMaterial({
@@ -160,8 +173,6 @@ const init = async () => {
 	function startCounting() {
 		STATE.animationId = requestAnimationFrame(animate);
 	}
-
-	GUI.init(); // Initialize GUI components
 }
 
 // Event listener for clicks on the document
