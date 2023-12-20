@@ -85,16 +85,24 @@ function render(){
     navbarRenderer.render(scene, camera);
 }
 
+let now
+let then = Date.now()
+let delta_ms = 0;
+
 // Main animate function
 function animate() {
+
+	now = Date.now()
+	delta_ms = now - then
+
   // Update controls
   orbitControls.update();
 
   // Update planet positions
-  updatePlanetPositions();
+  updatePlanetPositions( delta_ms );
 
   // Rotate objects
-  rotateObjects();
+  rotateObjects( delta_ms );
 
   // Render Scene
   // renderer.render(scene, camera);
@@ -111,6 +119,8 @@ function animate() {
 
   // Call animate again on the next frame
   window.requestAnimationFrame(animate);
+
+  then = now
 }
 
 // Exporting the animate function as default
