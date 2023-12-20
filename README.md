@@ -1,7 +1,7 @@
 # Solar System Project - Three.js
 [Demo Link]()
 
-- [Solar System Project - Three.js](#solar-system-project---threejs)
+## Table od Contents
   * [Description](#description)
   * [Features](#features)
   * [How to Use](#how-to-use)
