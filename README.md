@@ -49,4 +49,5 @@ This is an interactive 3D visualization of the solar system, made with Three.js.
 - HTML
 - CSS
 - JavaScript
+  - [Node.js](https://nodejs.org/en)
   - [Three.js](https://threejs.org/)
