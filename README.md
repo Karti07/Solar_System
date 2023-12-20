@@ -9,6 +9,7 @@
   * [Features](#features)
   * [How to Use](#how-to-use)
   * [Development Stack](#development-stack)
+  * [Acknowledgement](#acknowledgement)
 
 ## Description
 
@@ -61,3 +62,7 @@ This is an interactive 3D visualization of the solar system, made with Three.js.
 - JavaScript
   - [Node.js](https://nodejs.org/en)
   - [Three.js](https://threejs.org/)
+
+ ## Acknowledgement
+
+ I extend my sincere gratitude to [Elendee](https://github.com/elendee) for their contributions to this Three.js Solar System project. Their expertise and efforts were the key in refactoring and optimising the code, resulting in a more efficient program. Furthermore, I appreciate [Elendee](https://github.com/elendee)'s generosity in hosting the project on their website, serving as a accessible demo link.
