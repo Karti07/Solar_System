@@ -85,20 +85,23 @@ function render(){
     navbarRenderer.render(scene, camera);
 }
 
-let now
-let then = Date.now()
-let delta_ms = 0;
+// Variables to track time
+let now;
+let then = Date.now(); // Initial timestamp
+let delta_ms = 0; // Time difference in milliseconds
 
 // Main animate function
 function animate() {
 
+	// Get the current timestamp
 	now = Date.now()
+	// Calculate the time difference since the last frame
 	delta_ms = now - then
 
   // Update controls
   orbitControls.update();
 
-  // Update planet positions
+  // Update planet positions based on elapsed time
   updatePlanetPositions( delta_ms );
 
   // Rotate objects
@@ -120,6 +123,7 @@ function animate() {
   // Call animate again on the next frame
   window.requestAnimationFrame(animate);
 
+  // Update the timestamp for the next frame
   then = now
 }
 

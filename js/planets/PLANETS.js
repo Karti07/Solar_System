@@ -110,27 +110,42 @@ const initLocalMeshes = async () => {
 
 	const loads = []
 
-	for (const data of planet_data) {
-		const {
-			id,
-			radius,
-			texturePath,
-			position,
-		} = data
-		data.parent = local_meshes.sun;
-		loads.push(createPlanet( radius, texturePath, position, data.parent));
-	}
+	// Iterate through planet_data array to create planets
+for (const data of planet_data) {
+    // Destructure data object for easier access
+    const {
+        id,
+        radius,
+        texturePath,
+        position,
+    } = data;
 
-	Promise.all( loads )
-	.then( res => {
-		GUI.init() // Initialize GUI components
-		
-		const saturnGeometry = new THREE.SphereGeometry(saturnRadius, 32, 32);
-		const saturnMaterial = new THREE.MeshStandardMaterial({ map: loader.load("./textures/saturn_texture.jpg") });
-		const saturnMesh = new THREE.Mesh(saturnGeometry, saturnMaterial);
-		local_meshes.sun.add(saturnMesh);
-		local_meshes.sun.add(planet_meshes.saturn);
-	})
+    // Set the parent of the planet to the sun
+    data.parent = local_meshes.sun;
+
+    // Create a promise for each planet creation and push it to loads array
+    loads.push(createPlanet(radius, texturePath, position, data.parent));
+}
+
+// Once all planet creation promises are resolved
+Promise.all(loads)
+    .then(res => {
+        // Initialize GUI components
+        GUI.init();
+
+        // Create Saturn's geometry and material
+        const saturnGeometry = new THREE.SphereGeometry(saturnRadius, 32, 32);
+        const saturnMaterial = new THREE.MeshStandardMaterial({ map: loader.load("./textures/saturn_texture.jpg") });
+
+        // Create Saturn's mesh
+        const saturnMesh = new THREE.Mesh(saturnGeometry, saturnMaterial);
+
+        // Add Saturn's mesh to the sun's local meshes
+        local_meshes.sun.add(saturnMesh);
+
+        // Add Saturn's mesh to the planet meshes
+        local_meshes.sun.add(planet_meshes.saturn);
+    });
 
 	const ringGeometry = new THREE.RingGeometry(10, 15, 64);
 	const ringMaterial = new THREE.MeshStandardMaterial({
