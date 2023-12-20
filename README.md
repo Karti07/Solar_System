@@ -1,7 +1,7 @@
 # Solar System Project - Three.js
 [Demo Link]()
 
-![](https://github.com/Your_Repository_Name/Your_GIF_Name.gif)
+![](images/demo.gif)
 
 ## Table of Contents
 - [Solar System Project](#solar-system-project---threejs)
