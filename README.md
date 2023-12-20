@@ -29,14 +29,17 @@ This is an interactive 3D visualization of the solar system, made with Three.js.
 ## How to Use
 
 1. Clone this repository to your local machine.
+
 2. Navigate to the `package.json` file and run this command:
     ```js
     npm install
     ```
+
 3. Run this command to run the server:
     ```js
     node server.js
     ```
+
 4. In your browser, copy and paste `http://localhost:3000` or simply typing `3000` should do the job!
 
 ## Development Stack
@@ -44,4 +47,4 @@ This is an interactive 3D visualization of the solar system, made with Three.js.
 - HTML
 - CSS
 - JavaScript
-    - - [Three.js](https://threejs.org/)
+  - [Three.js](https://threejs.org/)
