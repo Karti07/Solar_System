@@ -1,3 +1,4 @@
+// Importing variables and modules
 import {
 	planet_settings,
 	local_meshes,
@@ -32,6 +33,7 @@ const arrowIcon = document.getElementById("arrow-icon");
 
 // --- library
 
+// Function to reset the scale of planetary meshes
 function resetPlanetScales() {
   local_meshes.earth.scale.set(1, 1, 1);
 
@@ -44,6 +46,7 @@ function resetPlanetScales() {
   planet_meshes.neptune.scale.set(1, 1, 1);
 }
 
+// Function to display information about a planet on the UI tooltip
 function showPlanetInfo(planetName, distance, size, speed, image) {
   const tooltip = document.getElementById("tooltip");
   tooltip.classList.toggle("active");
@@ -63,33 +66,31 @@ function showPlanetInfo(planetName, distance, size, speed, image) {
   planetImageElem.src = image;
 }
 
+// Function to handle the click event on a planet
 function handlePlanetClick( planetMesh, name, distance, size, speed, scale, image) {
     resetPlanetScales();
     showPlanetInfo(name, distance, size, speed, image);
     planetMesh.scale.set(scale, scale, scale);
 }
 
+// Function to update the displayed speed value based on the speed slider
 function updateSpeedValue() {
 	const newSpeed = parseFloat(speedSlider.value).toFixed(1);
 	speedValueLabel.textContent = newSpeed;
 	// Update the orbitSpeed of each planet in the planet_settings object
-	planet_settings.mercury.orbitSpeed = newSpeed * speedMultiplier;
-	planet_settings.venus.orbitSpeed = newSpeed * speedMultiplier;
-	planet_settings.earth.orbitSpeed = newSpeed * speedMultiplier;
-	planet_settings.mars.orbitSpeed = newSpeed * speedMultiplier;
-	planet_settings.jupiter.orbitSpeed = newSpeed * speedMultiplier;
-	planet_settings.saturn.orbitSpeed = newSpeed * speedMultiplier;
-	planet_settings.uranus.orbitSpeed = newSpeed * speedMultiplier;
-	planet_settings.neptune.orbitSpeed = newSpeed * speedMultiplier;
+	for (const planet of Object.values(planet_settings)) {
+		planet.orbitSpeed = newSpeed * speedMultiplier;
+	}
 }
 
+// Function to update the displayed zoom value based on the zoom slider
 function updateZoomValue() {
 	const zoomValue = parseFloat(zoomSlider.value).toFixed(2);
 	zoomValueLabel.textContent = zoomValue;
+
+  // Update the camera zoom value and render the scene immediately
 	camera.zoom = parseFloat(zoomSlider.value);
 	camera.updateProjectionMatrix();
-
-	//Render the scene and to apply the new zoom value immediately.
 	render();
 }
 
@@ -105,6 +106,7 @@ function handleOrbitCheckboxChange(event) {
   }
 }
 
+// Function to render the scene
 function render(){
 	renderer.render(scene, camera);
     navbarRenderer.render(scene, camera);
@@ -137,7 +139,8 @@ toggleSwitch.addEventListener("change", () => {
 	}
 });
 
-dropdownOptions.forEach((option) => {
+// Event listeners for dropdown options
+for (const option of dropdownOptions) {
   option.addEventListener("click", (event) => {
 
     const selectedValue = option.getAttribute("value");
@@ -146,11 +149,11 @@ dropdownOptions.forEach((option) => {
     selectedOptionText.textContent = selectedText;
 
     // Remove tick from all options except the selected one
-    dropdownOptions.forEach((otherOption) => {
+    for (const otherOption of dropdownOptions) {
       if (otherOption !== option) {
         otherOption.classList.remove("selected");
       }
-    });
+    }    
 
     // Add tick to the selected option
     option.classList.add("selected");
@@ -213,10 +216,12 @@ dropdownOptions.forEach((option) => {
 
     camera.updateProjectionMatrix();
   });
-});
+}
 
+// Display the interactive UI block
 interactive.style.display = "block";
 
+// Event listener for arrow icon click to minimize or maximize the interactive block
 arrowIcon.addEventListener("click", () => {
 	interactive.classList.toggle("minimized");
 
@@ -230,6 +235,7 @@ arrowIcon.addEventListener("click", () => {
 
 });
 
+// Event listener for checkbox change to show or hide Earth days heading
 const checkbox = document.getElementById('earthdays-checkbox')
 checkbox.addEventListener('change', e => {
 	const headingContainer = document.getElementById("heading-container");
@@ -240,6 +246,7 @@ checkbox.addEventListener('change', e => {
 	}
 })
 
+// Event listeners for input changes on zoom and speed sliders
 document.addEventListener("DOMContentLoaded", function () {
 	zoomSlider.addEventListener("input", updateZoomValue);
 	speedSlider.addEventListener("input", updateSpeedValue);
@@ -248,31 +255,28 @@ document.addEventListener("DOMContentLoaded", function () {
 // Set the checkbox to be checked by default
 orbitCheckbox.checked = true;
 
+// Event listener for checkbox change to handle orbit visibility
 orbitCheckbox.addEventListener("input", handleOrbitCheckboxChange);
 
+// Function to initialize navbar meshes and set up click event listeners
 const init = () => {
-	/*
-		functions dependent on load order
-	*/
-
-		// init navbar meshes
-	for( const entry of navbar_data ){
-		entry.mesh = planet_meshes[ entry.id ] || local_meshes[ entry.id ]
-		if( !entry.mesh ){
-			console.error('failed to init navbar mesh', entry.id )
+	for (const entry of navbar_data) {
+		entry.mesh = planet_meshes[entry.id] || local_meshes[entry.id];
+		if (!entry.mesh) {
+			console.error('failed to init navbar mesh', entry.id)
 		}
 	}
 
-	navbar_data.forEach((planet) => {
-		const { id, mesh, name, distance, size, speed, scale, image } = planet;
-		if( !mesh ) console.error( name + ' not assigned yet')
-		document.getElementById(id).addEventListener("click", () => {
-			handlePlanetClick( mesh, name, distance, size, speed, scale, image );
-		});
-	});		
-
+	for (const planet of navbar_data) {
+    const { id, mesh, name, distance, size, speed, scale, image } = planet;
+    if (!mesh) console.error(name + ' not assigned yet');
+    document.getElementById(id).addEventListener("click", () => {
+      handlePlanetClick(mesh, name, distance, size, speed, scale, image);
+    });
+  }  
 }
 
+// Exporting the 'init' function for external use
 export {
 	init
 }

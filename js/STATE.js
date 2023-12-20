@@ -1,7 +1,9 @@
+// Declare state object
 const state = {
 	isSimulationRunning: true,
 	animationId: 0,
 	earthDays: 0,
-}
-
-export default state
+  };
+  
+  // Export state object
+  export default state;  

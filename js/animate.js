@@ -10,10 +10,11 @@ import {
 } from './planets/config.js'
 import STATE from './STATE.js'
 
-
+// Declaring constants for settings and meshes
 const settings = planet_settings
 const meshes = planet_meshes
 
+// Function to update planet positions
 function updatePlanetPositions() {
 	const planets = [
 		{ mesh: meshes.mercury, angle: settings.mercury.angle, orbitSpeed: settings.mercury.orbitSpeed, distance: 30 },
@@ -34,11 +35,13 @@ function updatePlanetPositions() {
 			distance 
 		} = planet;
 
+		// Skip if mesh is not defined
 		if( !mesh ){
 			console.log('skipping', planet.id )
 			continue
 		}
 
+		// Update planet positions based on orbit calculations
 		for (const key in settings) {
 			if (key !== "sun") {
 				  settings[key].angle += settings[key].orbitSpeed;
@@ -49,15 +52,16 @@ function updatePlanetPositions() {
 			planet.angle += orbitSpeed;
 		}
 
+		// Update orbit paths
 		for (let i = 0; i < orbitPaths.length; i++) {
 			orbitPaths[i].position.x = local_meshes.sun.position.x;
 			orbitPaths[i].position.z = local_meshes.sun.position.z;
 		}
 
-	}
-  
+	} 
 }
 
+// Function to rotate objects
 function rotateObjects() {
 	  // Rotate the objects
 	if( !planet_meshes.sun ) return;
@@ -75,11 +79,13 @@ function rotateObjects() {
 	planet_meshes.neptune.rotation.y += 0.005;
 }
 
+// Function to render the scene
 function render(){
 	renderer.render(scene, camera);
     navbarRenderer.render(scene, camera);
 }
 
+// Main animate function
 function animate() {
   // Update controls
   orbitControls.update();
@@ -107,4 +113,5 @@ function animate() {
   window.requestAnimationFrame(animate);
 }
 
+// Exporting the animate function as default
 export default animate

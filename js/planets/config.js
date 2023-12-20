@@ -1,12 +1,14 @@
+// Importing the scene module and the THREE library
 import scene from "../scene.js";
 import * as THREE from 'three'
 
-
+// Constants for planetary radii
 const moonRadius = 1.5;
 const saturnRadius = 9;
 const sunRadius = 15;
 const earthRadius = 7;
 
+// Object to store whether each planet's mesh has been created
 const planet_meshes = {
 	mercury: false,
 	venus: false,
@@ -17,12 +19,14 @@ const planet_meshes = {
 	neptune: false,
 }
 
+// Object to store whether each local mesh (sun, earth, moon) has been created
 const local_meshes = {
 	sun: false,
 	earth: false,
 	moon: false,
 }
 
+// Function to generate random settings for each planet's initial angle and orbit speed
 function generatePlanetsSettings() {
 	return {
 		mercury: { angle: Math.random() * Math.PI * 2, orbitSpeed: 0.001 },
@@ -36,9 +40,10 @@ function generatePlanetsSettings() {
 	};
 }
 
-// Call the function to get the planet data
+// Calling the function to get the planet data
 const planet_settings = generatePlanetsSettings();
 
+// Array of objects containing data for each planet
 const planet_data = [
 	{ id: 'mercury', radius: 4, texturePath: "./textures/mercury_texture.jpg", position: [sunRadius + 4, 0, 0], parent: false },
 	{ id: 'venus', radius: 6, texturePath: "./textures/venus_texture.jpg", position: [sunRadius + 6, 0, 0], parent: false },
@@ -49,6 +54,7 @@ const planet_data = [
 	{ id: 'neptune', radius: 3.75, texturePath: "./textures/neptune_texture.jpg", position: [sunRadius + 3.75, 0, 0], parent: false },
 ]
 
+// Array of objects containing data for the navigation bar
 const navbar_data = [
 	{ id: "sun", mesh: false, name: "Sun", distance: "0", size: "109.2x larger than Earth", speed: "800,000", scale: 1, image: "./images/sun.jpg" },
 	{ id: "mercury", mesh: false, name: "Mercury", distance: "58 million km", size: "2,440 km", speed: "1,692", scale: 3, image: "./images/mercury.jpg" },
@@ -64,6 +70,7 @@ const navbar_data = [
 // Store the initial positions of the planets
 const initialPlanetData = generatePlanetsSettings()
 
+// Function to create an orbit path for a given radius
 function createOrbitPath(radius) {
 	const segments = 360;
 	const geometry = new THREE.BufferGeometry();
@@ -82,6 +89,7 @@ function createOrbitPath(radius) {
 	return line;
 }
 
+// Function to create orbit paths for all planets
 function createPlanetaryOrbits() {
 	const orbitRadii = [
 		30, // Mercury
@@ -94,8 +102,11 @@ function createPlanetaryOrbits() {
 		285, // Neptune
 	];
 
+	// Create orbit paths and add them to the scene
 	const orbitPaths = orbitRadii.map((radius) => createOrbitPath(radius));
-	orbitPaths.forEach((orbitPath) => scene.add(orbitPath));
+	for (const orbitPath of orbitPaths) {
+		scene.add(orbitPath);
+	}	
 
 	return orbitPaths;
 }
@@ -103,7 +114,7 @@ function createPlanetaryOrbits() {
 // Call the main function to create planetary orbits
 const orbitPaths = createPlanetaryOrbits();
 
-// for logging:
+// For logging purposes
 window.CONFIG = {
 	sunRadius,
 	earthRadius,
@@ -118,8 +129,10 @@ window.CONFIG = {
 	orbitPaths,
 }
 
+// Creating a TextureLoader instance for loading textures
 const loader = new THREE.TextureLoader()
 
+// Exporting variables for external use
 export {
 	sunRadius,
 	earthRadius,

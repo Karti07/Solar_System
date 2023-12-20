@@ -1,3 +1,4 @@
+// Importing modules and libraries
 import animate from './js/animate.js'
 import scene from './js/scene.js'
 import camera from './js/camera.js'
@@ -19,9 +20,13 @@ import {
 
 // --- library
 
+// Initializing the Three.js scene with asynchronous operations
 async function initThreeJsScene() {
 	
+	// Constructing the URL for the background texture
 	const url = './textures/' + backgroundTextureSlug
+	
+	// Loading the background texture and setting it for the scene
 	await new Promise( resolve => {
 		loader.load( url, tex => {
 			scene.background = tex;
@@ -29,13 +34,13 @@ async function initThreeJsScene() {
 		})		
 	})
 
-	//Camera
+	// Adding the camera to the scene
 	scene.add(camera);
 
-	// //Orbit Controls
+	// Updating the orbit controls for camera manipulation
 	orbitControls.update();
 
-	// //Lights
+	// Adding ambient and point lights to the scene
 	scene.add( lights.ambientLight);
 	scene.add( lights.pointLight);
 
@@ -44,13 +49,15 @@ async function initThreeJsScene() {
 
 // --- init
 
+// Initializing the Three.js scene and proceeding when it's done
 initThreeJsScene()
 .then( res => {
 
+	// Initializing the planetary elements
 	PLANETS.init()
 	.then( res => {
 
-		// Start the animation loop
+		// Starting the animation loop once everything is set up
 		animate();
 
 	})
