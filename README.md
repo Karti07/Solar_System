@@ -1,6 +1,4 @@
 # Solar System Project - Three.js
-[Demo Link](https://hilberts.xyz/utility/solar_system)
-
 ![](images/demo.gif)
 
 ## Table of Contents
