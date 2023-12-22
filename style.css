@@ -141,8 +141,7 @@ h2 {
     margin-bottom: 10%;
 }
 
-#stop-button {
-    margin-bottom: 10px;
+.button {
     padding: 8px 16px;
     background-color: #2234A8;
     color: white;
@@ -152,24 +151,17 @@ h2 {
     font-size: medium;
 }
 
-#stop-button:hover {
+.button:hover {
     background-color: #00008C;
+}
+
+#stop-button {
+    margin-bottom: 10px;
 }
 
 #reset-button {
     margin-bottom: 30px;
     margin-left: 2px;
-    padding: 8px 16px;
-    background-color: #2234A8;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: medium;
-}
-
-#reset-button:hover {
-    background-color: #00008C;
 }
 
 label {
@@ -303,17 +295,10 @@ span {
     margin-top: -12%;
 }
 
-#orbit-checkbox {
+input[type=checkbox] {
     width: 20px;
     height: 20px;
     cursor: pointer;
-}
-
-#earthdays-checkbox {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    margin-top: 10%;
 }
 
 #heading-container {
