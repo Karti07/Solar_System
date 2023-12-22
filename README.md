@@ -1,6 +1,4 @@
 # Solar System Project - Three.js
-[Demo Link](https://hilberts.xyz/utility/solar_system)
-
 ![](images/demo.gif)
 
 ## Table of Contents
@@ -13,7 +11,7 @@
 
 ## Description
 
-This is an interactive 3D visualization of the solar system, made with Three.js.The simulation accurately depicts the natural processes of planetary motion and gravitational interactions, allowing users to observe and understand the dynamic relationships among the planets, moons, and the sun.
+This is an interactive 3D visualisation of the solar system, made with Three.js.The simulation accurately depicts the natural processes of planetary motion and gravitational interactions, allowing users to observe and understand the dynamic relationships among the planets, moons, and the sun.
 
 ## Features
 
