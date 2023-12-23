@@ -162,6 +162,7 @@ body {
 
 #arrow-icon {
     cursor: pointer;
+    transform: translateX(140px); 
 }
 
 h2 {
@@ -213,6 +214,7 @@ input[type="range"] {
 span {
     color: white;
     font-size: larger;
+    transform: translateX(15px); 
 }
 
 .toggle-container,
@@ -272,7 +274,6 @@ span {
     position: absolute;
     top: 45%;
     left: 0;
-    right: 0;
     transform: translateY(-50%);
     font-size: 14px;
     transition: opacity 0.3s;
@@ -281,12 +282,13 @@ span {
 }
 
 .toggle-text-on {
+    left: 20%;
     color: #fff;
     opacity: 1;
 }
 
 .toggle-text-off {
-    left: 40%;
+    left: 50%;
     color: black;
     opacity: 0;
 }
