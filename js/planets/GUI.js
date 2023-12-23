@@ -218,9 +218,6 @@ for (const option of dropdownOptions) {
   });
 }
 
-// Display the interactive UI block
-interactive.style.display = "block";
-
 // Event listener for arrow icon click to minimize or maximize the interactive block
 arrowIcon.addEventListener("click", () => {
 	interactive.classList.toggle("minimized");
