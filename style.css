@@ -399,7 +399,7 @@ input[type=checkbox] {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     position: absolute;
-    right: 1;
+    right: 5px;
 }
 
 a[value="option1"] {
