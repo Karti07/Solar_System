@@ -191,11 +191,7 @@ h2 {
     background-color: #00008C;
 }
 
-#stop-button {
-    flex: 1;
-}
-
-#reset-button {
+#stop-button, #reset-button {
     flex: 1;
 }
 
