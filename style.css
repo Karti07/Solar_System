@@ -6,6 +6,11 @@
     font-family: "Kanit", sans-serif;
 }
 
+html {
+    filter: brightness(0%);
+}
+
+
 html,
 body {
     overflow: hidden;

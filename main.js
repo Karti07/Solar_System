@@ -44,8 +44,9 @@ async function initThreeJsScene() {
 	scene.add( lights.ambientLight);
 	scene.add( lights.pointLight);
 
+	// Remove the brightness filter from HTML once Three.js is loaded
+    document.documentElement.style.filter = 'brightness(100%)';
 }
-
 
 // --- init
 
