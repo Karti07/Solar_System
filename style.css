@@ -58,41 +58,32 @@ body {
     border: 2px solid white;
     display: flex;
     flex-direction: column;
+    gap: 45px;
 }
 
 #planet-name {
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 5px;
 }
 
 .planet-info {
     font-size: 16px;
-    margin-bottom: 3px;
     border-bottom: white solid 2px;
     border-top: white solid 2px;
     padding: 20px;
 }
 
 #rectangle {
-    margin-top: 15%;
     width: 320px;
     height: 250px;
     border: 1.5px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #planet-image {
     width: 60%;
-    margin-top: 9%;
-}
-
-#planet-distance {
-    margin-top: 25%;
-}
-
-#planet-size,
-#planet-speed {
-    margin-top: 10%;
 }
 
 .close {
