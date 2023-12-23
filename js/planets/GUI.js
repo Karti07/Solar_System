@@ -220,16 +220,15 @@ for (const option of dropdownOptions) {
 
 // Event listener for arrow icon click to minimize or maximize the interactive block
 arrowIcon.addEventListener("click", () => {
-	interactive.classList.toggle("minimized");
+  interactive.classList.toggle("minimized");
 
-	if (interactive.classList.contains("minimized")) {
-		arrowIcon.classList.remove("fa-chevron-up");
-		arrowIcon.classList.add("fa-chevron-down");
-	} else {
-		arrowIcon.classList.remove("fa-chevron-down");
-		arrowIcon.classList.add("fa-chevron-up");
-	}
-
+  if (interactive.classList.contains("minimized")) {
+      arrowIcon.classList.remove("fa-chevron-up");
+      arrowIcon.classList.add("fa-chevron-down");
+  } else {
+      arrowIcon.classList.remove("fa-chevron-down");
+      arrowIcon.classList.add("fa-chevron-up");
+  }
 });
 
 // Event listener for checkbox change to show or hide Earth days heading
