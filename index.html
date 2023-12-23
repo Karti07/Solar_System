@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>Solar System</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-	<script type="importmap">
+    <script type="importmap">
 	    {
 	        "imports": {
 	            "three": "./node_modules/three/build/three.module.js"
@@ -14,6 +15,7 @@
 	</script>
 
 </head>
+
 <body>
     <canvas class="webgl"></canvas>
     <canvas class="navbar-canvas"></canvas>
@@ -47,49 +49,69 @@
     </div>
 
     <div id="interactive" class="interactive-panel">
-        <h2>Interactive Panel <i id="arrow-icon" class="fas fa-chevron-up"></i></h2>
-        <button class="button" id="stop-button">Stop Simulation</button>
-        <button class="button" id="reset-button">Reset Simulation</button>
-        <label for="zoom-slider">Zoom:</label>
-        <div class="slider-container">
-            <input type="range" id="zoom-slider" min="0.5" max="2" step="0.01" value="0.6">
-            <span id="zoom-value">0.6</span>
+        <div>
+            <span>Interactive Panel <i id="arrow-icon" class="fas fa-chevron-up"></i></span>
         </div>
-        <label for="speed-slider">Animation Speed:</label>
-        <div class="slider-container">
-            <input type="range" id="speed-slider" min="0.1" max="2" step="0.01" value="1">
-            <span id="speed-value">1.0</span>
+        <div>
+            <div class="button-container">
+                <button class="button" id="stop-button">Stop Simulation</button>
+                <button class="button" id="reset-button">Reset Simulation</button>
+            </div>
         </div>
-        <label for="toggle-switch" class="toggle-label">2D View:</label>
-        <div class="toggle-container">
-            <input type="checkbox" id="toggle-switch">
-            <label for="toggle-switch" class="switch"></label>
-            <span class="toggle-text toggle-text-on">2D</span>
-            <span class="toggle-text toggle-text-off">3D</span>
+        <div>
+            <label for="zoom-slider">Zoom:</label>
+            <div class="slider-container">
+                <input type="range" id="zoom-slider" min="0.5" max="2" step="0.01" value="0.6">
+                <span id="zoom-value">0.6</span>
+            </div>
         </div>
-        <div class="checkbox-container">
-            <input type="checkbox" id="orbit-checkbox">
-            <label for="orbit-checkbox">Orbit Path</label>
-            <input type="checkbox" id="earthdays-checkbox" checked>
-            <label for="earthdays-checkbox">Earth Days Counter</label>
+        <div>
+            <label for="speed-slider">Animation Speed:</label>
+            <div class="slider-container">
+                <input type="range" id="speed-slider" min="0.1" max="2" step="0.01" value="1">
+                <span id="speed-value">1.0</span>
+            </div>
         </div>
-        <div class="dropdown">
-            <label for="dropdown-select" class="dropdown-label">Camera View:</label>
-            <button class="dropbtn" id="dropdown-select">
-                <span class="selected-option">Select</span>
-                <i class="fa fa-angle-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="#" value="option1">Default</a>
-                <a href="#" value="option2">The Sun</a>
-                <a href="#" value="option3">Mercury</a>
-                <a href="#" value="option4">Venus</i></a>
-                <a href="#" value="option5">The Earth</a>
-                <a href="#" value="option6">Mars</a>
-                <a href="#" value="option7">Jupiter</a>
-                <a href="#" value="option8">Saturn</a>
-                <a href="#" value="option9">Uranus</a>
-                <a href="#" value="option10">Neptune</a>
+        <div>
+            <label for="toggle-switch" class="toggle-label">View:</label>
+            <div class="toggle-checkbox-container flex-row flex-justify-between flex-align-center">
+                <div class="toggle-container">
+                    <input type="checkbox" id="toggle-switch">
+                    <label for="toggle-switch" class="switch"></label>
+                    <span class="toggle-text toggle-text-on">2D</span>
+                    <span class="toggle-text toggle-text-off">3D</span>
+                </div>
+                <div class="checkbox-container">
+                    <div>
+                        <input type="checkbox" id="orbit-checkbox">
+                        <label for="orbit-checkbox" class="inline-block">Orbit Path</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="earthdays-checkbox" checked>
+                        <label for="earthdays-checkbox" class="inline-block">Earth Days Counter</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown-label">Camera View:</div>
+        <div>
+            <div class="dropdown">
+                <button class="dropbtn" id="dropdown-select">
+                    <span class="selected-option">Select</span>
+                    <i class="fa fa-angle-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="#" value="option1">Default</a>
+                    <a href="#" value="option2">The Sun</a>
+                    <a href="#" value="option3">Mercury</a>
+                    <a href="#" value="option4">Venus</i></a>
+                    <a href="#" value="option5">The Earth</a>
+                    <a href="#" value="option6">Mars</a>
+                    <a href="#" value="option7">Jupiter</a>
+                    <a href="#" value="option8">Saturn</a>
+                    <a href="#" value="option9">Uranus</a>
+                    <a href="#" value="option10">Neptune</a>
+                </div>
             </div>
         </div>
     </div>
@@ -97,7 +119,8 @@
     <div id="heading-container">
         <h1 id="heading">Earth Days: 0</h1>
     </div>
-    
+
     <script defer type='module' src="./main.js"></script>
 </body>
+
 </html>

@@ -41,7 +41,8 @@ body {
     transition: opacity 0.3s ease;
 }
 
-.tooltip-container, .tooltip-content {
+.tooltip-container,
+.tooltip-content {
     background-color: rgba(0, 0, 0, 0.7);
     color: #fff;
     padding: 10px;
@@ -109,17 +110,49 @@ body {
     cursor: pointer;
 }
 
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-justify-between {
+    justify-content: space-between;
+}
+
+.flex-align-center {
+    align-items: center;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.block {
+    display: block;
+}
+
 .interactive-panel {
     position: fixed;
-    top: 4%;
+    top: 30px;
     right: 40px;
     border: 1px solid #ccc;
-    padding: 20px;
+    padding: 30px;
     width: 300px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    gap: 15px;
+    color: white;
+    border-radius: 20px;
+}
+
+.interactive-panel>div {
+    width: 100%;
 }
 
 .minimized {
@@ -128,18 +161,24 @@ body {
 }
 
 #arrow-icon {
-    margin-left: 45%;
     cursor: pointer;
 }
 
 h2 {
     color: white;
     font-size: 18px;
-    margin-bottom: 10%;
+    flex: 1;
+    flex-direction: row;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }
 
 .button {
-    padding: 8px 16px;
+    padding: 8px;
     background-color: #2234A8;
     color: white;
     border: none;
@@ -153,46 +192,44 @@ h2 {
 }
 
 #stop-button {
-    margin-bottom: 10px;
+    flex: 1;
 }
 
 #reset-button {
-    margin: 0 0 30px 2px;
+    flex: 1;
 }
 
 label {
     color: white;
     display: block;
-    margin-bottom: 5px;
 }
 
 .slider-container {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
 }
 
 input[type="range"] {
     flex: 1;
-    width: 100%;
     cursor: pointer;
 }
 
 span {
     color: white;
-    margin-left: 10px;
     font-size: larger;
+}
+
+.toggle-container,
+.checkbox-container {
+    display: flex;
 }
 
 .toggle-container {
     position: relative;
     display: flex;
+    flex-direction: row;
     width: 60px;
     height: 34px;
-}
-
-.toggle-label {
-    margin: 10% 10px 5%;
 }
 
 .toggle-container input {
@@ -223,7 +260,7 @@ span {
     transition: transform 0.3s;
 }
 
-.toggle-container input:checked +.switch:before {
+.toggle-container input:checked+.switch:before {
     left: 7px;
 }
 
@@ -258,24 +295,20 @@ span {
     opacity: 0;
 }
 
-.toggle-container input:checked + .switch ~ .toggle-text-on,
-.toggle-container input:not(:checked) + .switch ~ .toggle-text-off {
+.toggle-container input:checked+.switch~.toggle-text-on,
+.toggle-container input:not(:checked)+.switch~.toggle-text-off {
     opacity: 1;
 }
 
 .checkbox-container {
+
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    margin: -20% 0 0 35%;
 }
 
 .checkbox-container label {
     color: white;
     font-size: 124%;
-    display: flex;
-    align-items: center;
-    margin: -12% 0 0 15%
 }
 
 input[type=checkbox] {
@@ -296,25 +329,22 @@ input[type=checkbox] {
 
 #heading {
     color: white;
-    margin: 12% 0 0 0;
     font-family: 'Questrial', sans-serif;
 }
 
 .dropdown {
     position: relative;
-    display: inline-flex;
-    align-items: center;
+    width: 100%;
 }
 
 
 .dropdown-label {
-    text-align: center;
+    display: block;
     font-size: larger;
-    margin: 5% 10px 0 0;
 }
 
 .dropbtn {
-    margin: 9% 20px 10px 0;
+    width: 100%;
     padding: 8px 16px;
     background-color: #2234A8;
     color: white;
@@ -323,27 +353,23 @@ input[type=checkbox] {
     cursor: pointer;
 }
 
-.dropbtn i {
-    margin-left: 36px;
-}
-
 .dropbtn:hover {
     background-color: #00008C;
 }
 
 .dropdown-content {
     display: none;
-    position: fixed;
+    position: absolute;
+    flex-direction: row;
     background-color: #f9f9f9;
-    min-width: 160px;
+    width: 100%;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
-    margin: 27% 0 0 9.5%;
 }
 
 .dropdown-content a {
     color: black;
-    padding: 5px 16px;
+    padding: 11px 16px;
     text-decoration: none;
     display: block;
     font-weight: bolder;
@@ -362,11 +388,11 @@ input[type=checkbox] {
 }
 
 .dropdown-content a.selected::after {
-    content: "\f00c"; /* Unicode for tick icon */
+    content: "\f00c";
+    /* Unicode for tick icon */
     display: inline-block;
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
-    margin-left: 5px;
     position: absolute;
     right: 1;
 }
