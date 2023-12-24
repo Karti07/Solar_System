@@ -19,8 +19,6 @@ body {
 
 .webgl {
     position: fixed;
-    top: 0;
-    left: 0;
 }
 
 .navbar {
@@ -68,8 +66,7 @@ body {
 
 .planet-info {
     font-size: 16px;
-    border-bottom: white solid 2px;
-    border-top: white solid 2px;
+    border-block: 2px solid white;
     padding: 20px;
 }
 
@@ -222,10 +219,7 @@ span {
 
 .switch {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset:0;
     background-color: #ccc;
     border-radius: 34px;
     cursor: pointer;
