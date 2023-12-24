@@ -53,13 +53,13 @@ async function createPlanet(radius, texturePath, position, parent) {
 
 	// Update planet_meshes based on the texturePath
 	switch (texturePath) {
-		case "./textures/mercury_texture.jpg": planet_meshes.mercury = mesh; break;
-		case "./textures/venus_texture.jpg": planet_meshes.venus = mesh; break;
-		case "./textures/mars_texture.jpg": planet_meshes.mars = mesh; break;
-		case "./textures/jupiter_texture.jpg": planet_meshes.jupiter = mesh; break;
-		case "./textures/saturn_texture.jpg": planet_meshes.saturn = mesh; break;
-		case "./textures/uranus_texture.jpg": planet_meshes.uranus = mesh; break;
-		case "./textures/neptune_texture.jpg": planet_meshes.neptune = mesh; break;
+		case "./textures/mercury_texture.webp": planet_meshes.mercury = mesh; break;
+		case "./textures/venus_texture.webp": planet_meshes.venus = mesh; break;
+		case "./textures/mars_texture.webp": planet_meshes.mars = mesh; break;
+		case "./textures/jupiter_texture.webp": planet_meshes.jupiter = mesh; break;
+		case "./textures/saturn_texture.webp": planet_meshes.saturn = mesh; break;
+		case "./textures/uranus_texture.webp": planet_meshes.uranus = mesh; break;
+		case "./textures/neptune_texture.webp": planet_meshes.neptune = mesh; break;
 	}
 
 	return mesh;
@@ -88,20 +88,20 @@ function addOrbitPath(scene, orbitRadius) {
 // Function to initialize local meshes
 const initLocalMeshes = async () => {
 	const sunGeometry = new THREE.SphereGeometry(sunRadius, 32, 32);
-	const sunMaterial = new THREE.MeshStandardMaterial({ map: loader.load("./textures/sun_texture.jpg") });
+	const sunMaterial = new THREE.MeshStandardMaterial({ map: loader.load("./textures/sun_texture.webp") });
 	const sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
 	scene.add(sunMesh);
 	local_meshes.sun = sunMesh;
 
 	const earthGeometry = new THREE.SphereGeometry(earthRadius, 32, 32);
-	const earthMaterial = new THREE.MeshStandardMaterial({ map: loader.load("./textures/earth_texture.jpg") });
+	const earthMaterial = new THREE.MeshStandardMaterial({ map: loader.load("./textures/earth_texture.webp") });
 	const earthMesh = new THREE.Mesh(earthGeometry, earthMaterial);
 	earthMesh.position.set(sunRadius + 55, 0, 0);
 	local_meshes.sun.add(earthMesh);
 	local_meshes.earth = earthMesh;
 
 	const moonGeometry = new THREE.SphereGeometry(moonRadius, 32, 32);
-	const moonMaterial = new THREE.MeshStandardMaterial({ map: loader.load("./textures/moon_texture.jpg"), emissive: 0x171717 });
+	const moonMaterial = new THREE.MeshStandardMaterial({ map: loader.load("./textures/moon_texture.webp"), emissive: 0x171717 });
 	const moonMesh = new THREE.Mesh(moonGeometry, moonMaterial);
 	moonMesh.position.set(earthRadius + moonRadius + 2, 0, 0);
 	moonMesh.scale.set(1.5, 1.5, 1.5);
@@ -135,7 +135,7 @@ Promise.all(loads)
 
         // Create Saturn's geometry and material
         const saturnGeometry = new THREE.SphereGeometry(saturnRadius, 32, 32);
-        const saturnMaterial = new THREE.MeshStandardMaterial({ map: loader.load("./textures/saturn_texture.jpg") });
+        const saturnMaterial = new THREE.MeshStandardMaterial({ map: loader.load("./textures/saturn_texture.webp") });
 
         // Create Saturn's mesh
         const saturnMesh = new THREE.Mesh(saturnGeometry, saturnMaterial);
@@ -149,7 +149,7 @@ Promise.all(loads)
 
 	const ringGeometry = new THREE.RingGeometry(10, 15, 64);
 	const ringMaterial = new THREE.MeshStandardMaterial({
-		map: loader.load("./textures/saturn_ring_texture.png"),
+		map: loader.load("./textures/saturn_ring_texture.webp"),
 		side: THREE.DoubleSide,
 	});
 	const ringMesh = new THREE.Mesh(ringGeometry, ringMaterial);

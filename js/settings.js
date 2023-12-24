@@ -1,7 +1,7 @@
 // Declare constants
 const canvasSelector = "canvas.webgl";
 const navbarCanvasSelector = "canvas.navbar-canvas";
-const backgroundTextureSlug = "stars_bg.jpg";
+const backgroundTextureSlug = "stars_bg.webp";
 
 const navbarWidth = 800;
 const navbarHeight = 60;
